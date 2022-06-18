@@ -1,12 +1,29 @@
 'use strict';
 
 import { createCardPhoto } from "./createCardPhoto.js";
+import { createElem } from "./createElem.js";
 
-export const renderGallery = (photos) => {
+export const renderGallery = (wrapper, photos) => {
     
-    const gallery = document.querySelector(`.grid`);
+    const gallery = createElem(`ul`, {
+        className: `grid`
+    });
+    wrapper.append(gallery);
 
-    // const cards = photos.map(createCardPhoto);
-    const cards = photos.map(photo => createCardPhoto(photo));
-    gallery.append(...cards);
+    // init masonry
+    const grid = new Masonry(gallery, {
+        gutter: 10,
+        itemSelector: `.card`,
+        columnWidth: 200,
+        isFitWidth: true,
+    });
+
+    const cards = photos.map(createCardPhoto);
+
+    Promise.all(cards)
+        .then((cards) => {
+            gallery.append(...cards);
+            grid.appended(cards); 
+        })
+    // const cards = photos.map(photo => createCardPhoto(photo));    
 };
