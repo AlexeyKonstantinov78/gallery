@@ -2,6 +2,7 @@
 
 import { createCardPhoto } from "./createCardPhoto.js";
 import { createElem } from "./createElem.js";
+import { scrollLoad } from "./scrollLoad.js";
 
 export const renderGallery = (wrapper, photos) => {
     
@@ -9,6 +10,8 @@ export const renderGallery = (wrapper, photos) => {
         className: `grid`
     });
     wrapper.append(gallery);
+
+    const endElem = createElem(`div`);
 
     // init masonry
     const grid = new Masonry(gallery, {
@@ -24,6 +27,8 @@ export const renderGallery = (wrapper, photos) => {
         .then((cards) => {
             gallery.append(...cards);
             grid.appended(cards); 
-        })
+            wrapper.append(endElem);            
+            scrollLoad(gallery, grid, endElem);
+        });
     // const cards = photos.map(photo => createCardPhoto(photo));    
 };
