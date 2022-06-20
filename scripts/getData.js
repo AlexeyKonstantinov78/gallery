@@ -1,7 +1,7 @@
 'use strict';
 
-export const getData = () => {
-    return fetch('data.json')
+export const getData = (url) => {
+    return fetch(url)
         .then((data) => {
             return data.json();
         });
