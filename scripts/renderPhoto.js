@@ -41,6 +41,10 @@ export const renderPhoto = (photoWrapper, photo) => {
         textContent: photo.likes
     });
 
+    if (!buttonPhotoLike.likedByUser) {
+        buttonPhotoLike.classList.add('photo__like_o');
+    }
+
     const linkPhotoDownload = createElem(`a`, {
         className: `photo__download`,
         download: true,
