@@ -52,32 +52,3 @@ export const renderPhoto = (photoWrapper, photo) => {
 
     photoWrapper.append(img, linkPhotoAutor, divPhotoControl);
 };
-
-/*
-
-<img 
-    class="photo__picture" 
-    src="" 
-    alt="null" 
-    style="max-height: 80vh;">
-<a class="photo__author" href="https://unsplash.com/@supergios">
-    <img 
-        loading="lazy" 
-        src="" 
-        alt="" 
-        title="Jonny Gios">
-    <span>Jonny Gios</span>
-</a>
-<div class="photo__control">
-    <button 
-        id="JIqH1ps4eK8" 
-        class="photo__like">30</button>
-    <a 
-        class="photo__download" 
-        download="true" 
-        href="" 
-        target="_blank">
-    </a>
-</div>
-
-*/
