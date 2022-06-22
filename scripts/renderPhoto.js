@@ -1,22 +1,70 @@
 'use strict';
 
+import { createElem } from "./createElem.js";
+
 export const renderPhoto = (photoWrapper, photo) => {
     
-    
     console.log(photoWrapper, photo);
+
+    const img = createElem(`img`, {
+        className: `photo__picture`,
+        src: photo.urls.full,
+        alt: photo.description,
+        style: `max-height: 80vh;`
+    });
+
+    const linkPhotoAutor =createElem(`a`, {
+        className: "photo__author",
+        href: photo.user.links.html,
+    });
+
+    const imgPhotoAutor = createElem(`img`, {
+        loading: "lazy",
+        src: photo.user.profile_image.medium,
+        alt: photo.user.bio,
+        title: photo.user.name
+    });
+
+    const userName = createElem(`span`, {
+        textContent: photo.user.name
+    });
+
+    linkPhotoAutor.append(imgPhotoAutor, userName);
+
+    const divPhotoControl = createElem(`div`, {
+        className: `photo__control`
+    });
+
+    const buttonPhotoLike = createElem(`button`, {
+        id: photo.id,
+        className: `photo__like`,
+        textContent: photo.likes
+    });
+
+    const linkPhotoDownload = createElem(`a`, {
+        className: `photo__download`,
+        download: true,
+        href: photo.links.download,
+        target: `_blank`
+    });
+
+    divPhotoControl.append(buttonPhotoLike, linkPhotoDownload);
+
+    photoWrapper.append(img, linkPhotoAutor, divPhotoControl);
 };
 
 /*
 
 <img 
     class="photo__picture" 
-    src="https://images.unsplash.com/photo-1654363137357-9d897b5a20d7?crop=entropy&amp;cs=tinysrgb&amp;fm=jpg&amp;ixid=MnwzMDE0MzF8MHwxfGFsbHx8fHx8fHx8fDE2NTQ1MjMzNjE&amp;ixlib=rb-1.2.1&amp;q=80" 
+    src="" 
     alt="null" 
     style="max-height: 80vh;">
 <a class="photo__author" href="https://unsplash.com/@supergios">
     <img 
         loading="lazy" 
-        src="https://images.unsplash.com/profile-1600184424687-de96bd61fa67image?ixlib=rb-1.2.1&amp;crop=faces&amp;fit=crop&amp;w=64&amp;h=64" alt="Always looking for the next adventure to capture the next shot. Seize the day. Sony A7 IV . There are more images behind my Unplash, for commercial projects please contact me.  John 3:16" 
+        src="" 
+        alt="" 
         title="Jonny Gios">
     <span>Jonny Gios</span>
 </a>
@@ -27,7 +75,7 @@ export const renderPhoto = (photoWrapper, photo) => {
     <a 
         class="photo__download" 
         download="true" 
-        href="https://unsplash.com/photos/JIqH1ps4eK8/download?ixid=MnwzMDE0MzF8MHwxfGFsbHx8fHx8fHx8fDE2NTQ1MjMzNjE" 
+        href="" 
         target="_blank">
     </a>
 </div>

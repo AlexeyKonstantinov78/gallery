@@ -31,20 +31,20 @@ export const createCardPhoto = async (data) => {
 
     const photo = await loadImg(data.urls.small, data.alt_description);
 
-
     const author = createElem(`a`, {
         className: `card__author`,
         href: data.user.links.html
     });    
 
-    const avatarAuthor = new Image();
-    avatarAuthor.className = `author__photo`;
-    avatarAuthor.src = data.user.profile_image.medium;
-    avatarAuthor.width = `32`;
-    avatarAuthor.height = `32`;
-    avatarAuthor.role = `presentation`;
-    avatarAuthor.alt = data.user.bio;
-    avatarAuthor.title = data.user.username;
+    const avatarAuthor = createElem(`img`, {
+        className: `author__photo`,
+        src: data.user.profile_image.medium,
+        width: `32`,
+        heigh: `32`,
+        role: `presentation`,
+        alt: data.user.bio,
+        title: data.user.username
+    });
 
     author.append(avatarAuthor);
 
