@@ -6,7 +6,7 @@ export const getData = ({count, page = 1, idPhoto}) => {
     const url = new URL(API_URL_PHOTOS);
 
     url.searchParams.set(`client_id`, ACCESS_KEY);
-    console.log(idPhoto);
+    // console.log(idPhoto);
 
     if (count && page) {
         url.searchParams.append(`per_page`, count);
