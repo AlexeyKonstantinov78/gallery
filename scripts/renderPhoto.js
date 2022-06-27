@@ -4,8 +4,6 @@ import { createElem } from "./createElem.js";
 
 export const renderPhoto = (photoWrapper, photo) => {
     
-    console.log(photoWrapper, photo);
-
     const img = createElem(`img`, {
         className: `photo__picture`,
         src: photo.urls.full,
@@ -38,7 +36,8 @@ export const renderPhoto = (photoWrapper, photo) => {
     const buttonPhotoLike = createElem(`button`, {
         id: photo.id,
         className: `photo__like`,
-        textContent: photo.likes
+        textContent: photo.likes,
+        likedByUser: photo.liked_by_user,
     });
 
     if (!buttonPhotoLike.likedByUser) {
@@ -53,6 +52,7 @@ export const renderPhoto = (photoWrapper, photo) => {
     });
 
     divPhotoControl.append(buttonPhotoLike, linkPhotoDownload);
-
     photoWrapper.append(img, linkPhotoAutor, divPhotoControl);
+
+    return buttonPhotoLike;
 };
